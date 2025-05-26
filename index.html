@@ -22,6 +22,71 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
+	<style>
+		/* Ensure header/nav is always at the top and menu is visible on all screens */
+		#header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 1000;
+			background: rgba(255,255,255,0);
+			transition: background 0.4s cubic-bezier(.4,0,.2,1);
+		}
+		#header.header-solid {
+			background: #fff;
+		}
+		.navbar {
+			padding-top: 0 !important;
+			padding-bottom: 0 !important;
+			min-height: 64px;
+		}
+		.navbar-brand {
+			display: flex;
+			align-items: center;
+		}
+		.navbar-nav {
+			align-items: center;
+			gap: 2rem !important; /* Increased gap for more space between options */
+		}
+		@media (max-width: 991.98px) {
+			.navbar-collapse {
+				display: flex !important;
+				flex-basis: auto;
+			}
+			#slide-navbar-collapse {
+				justify-content: flex-end !important;
+			}
+		}
+		@media (max-width: 575.98px) {
+			#header .container-fluid {
+				padding-left: 8px;
+				padding-right: 8px;
+			}
+			.navbar-brand img {
+				height: 48px !important;
+			}
+			.navbar-nav {
+				gap: 1rem !important; /* Slightly less gap on small screens */
+			}
+		}
+	</style>
+	<script>
+		// Banner transparency scroll effect
+		document.addEventListener("DOMContentLoaded", function () {
+			const header = document.getElementById('header');
+			function updateHeaderBg() {
+				const scrollY = window.scrollY || window.pageYOffset;
+				if (scrollY > 60) {
+					header.classList.add('header-solid');
+				} else {
+					header.classList.remove('header-solid');
+				}
+			}
+			updateHeaderBg();
+			window.addEventListener('scroll', updateHeaderBg);
+		});
+	</script>
 </head>
 
 <body>
@@ -44,21 +109,20 @@
 	 <header id="header" class="fixed-top">
 		<div class="container-fluid">
 			<div class="row">
-				<nav class="navbar navbar-expand-lg py-4">
+				<nav class="navbar navbar-expand-lg py-0">
 					<div class="navbar-brand">
 						<a href="index.html">
 							<img src="images/Logo.png" alt="logo" style="height: 64px; width: auto; display: block;">
 						</a>
 					</div>
 
-					<div class="navbar-collapse collapse justify-content-end me-5" id="slide-navbar-collapse">
-						<ul id="slide-down" class="navbar-nav gap-4">
+					<div class="navbar-collapse collapse show justify-content-end me-5" id="slide-navbar-collapse" style="flex-grow:1;">
+						<ul id="slide-down" class="navbar-nav gap-4 flex-row">
 							<li><a href="#billboard" class="nav-link active">Home</a></li>
 							<li><a href="#about" class="nav-link">About me</a></li>	
 							<li><a href="#portfolio" class="nav-link">Portfolio</a></li>
 							<!-- <li><a href="#blog" class="nav-link">Blog</a></li>-->
 							<li><a href="#contact" class="nav-link">Contact</a></li>
-
 						</ul>
 					</div>
 
@@ -76,7 +140,7 @@
 						</ul>
 					</div><!--social-links-->
 
-					<div id="menu-btn" class="menu-btn"><span></span></div>
+					<!-- Hamburger menu removed -->
 
 				</nav>
 			</div>
@@ -236,8 +300,8 @@
 					const grid = document.querySelector('.grid');
 					if (!grid) return;
 
-					// Randomize and add travel images
-					const shuffledTravel = shuffle([...travelImages]);
+					// Randomize and add only 20 travel images
+					const shuffledTravel = shuffle([...travelImages]).slice(0, 20);
 					shuffledTravel.forEach((img, idx) => {
 						const col = document.createElement("div");
 						col.className = "col mb-4 portfolio-item travel";
@@ -249,8 +313,8 @@
 						grid.appendChild(col);
 					});
 
-					// Randomize and add landscape images
-					const shuffledLandscape = shuffle([...landscapeImages]);
+					// Randomize and add only 20 landscape images
+					const shuffledLandscape = shuffle([...landscapeImages]).slice(0, 20);
 					shuffledLandscape.forEach((img, idx) => {
 						const col = document.createElement("div");
 						col.className = "col mb-4 portfolio-item landscape";
@@ -383,10 +447,40 @@
 
 
 
-	<section id="contact" class="contact-detail my-5 bg-secondary">
-		<div class="container">
+	<section id="contact" class="contact-detail my-5 bg-secondary" style="position:relative; overflow:hidden;">
+		<img src="images/Banner-5.jpg" alt="Contact Banner" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.85;">
+		<style>
+			#contact, #contact * {
+				color: #111 !important;
+				text-shadow: none !important;
+			}
+			#contact .btn, #contact .form-control, #contact input, #contact textarea {
+				color: #111 !important;
+				background: rgba(255,255,255,0.7) !important;
+				border-color: #333 !important;
+				text-shadow: none !important;
+			}
+			#contact .btn-dark {
+				background: #fff !important;
+				color: #111 !important;
+				border: 1px solid #222 !important;
+			}
+			#contact img[alt="Contact Banner"] {
+				object-position: center 30%;
+			}
+			#contact .detail-content {
+				padding-bottom: 3rem;
+			}
+			#contact .btn-dark {
+				background: rgba(255,255,255,0.7) !important;
+				color: #111 !important;
+				border: 1px solid #222 !important;
+			}
+			}
+		</style>
+		<div class="container" style="position:relative; z-index:1;">
 			<div class="row">
-				<div class="col-m</div>d-6 detail-content">
+				<div class="col-md-6 detail-content">
 					<div class="text-content mt-5 pt-5">
 
 						<div class="section-header">
@@ -395,27 +489,51 @@
 
 						<p>I would love to get suggestions from you.</p>
 
-						<form id="form" class="form-group">
+						<form id="contact-form" class="form-group">
 							<div class="text-input row">
 								<div class="col-md-6 mb-3">
-									<input type="text" name="name" class="form-control bg-transparent border-0 border-bottom" placeholder="Your name">
+									<input type="text" name="name" class="form-control bg-transparent border-0 border-bottom" placeholder="Your name" required>
 								</div>
 								<div class="col-md-6 mb-3">
-									<input type="text" name="E-mail" class="form-control bg-transparent border-0 border-bottom" placeholder="Your E-mail Address">
+									<input type="email" name="email" class="form-control bg-transparent border-0 border-bottom" placeholder="Your E-mail Address" required>
 								</div>
 								<div class="col-md-12 mb-3">
-									<textarea placeholder="Your Message" class="form-control bg-transparent border-0 border-bottom" placeholder="Message" rows="6"></textarea>
+									<textarea name="message" placeholder="Your Message" class="form-control bg-transparent border-0 border-bottom" rows="6" required></textarea>
 								</div>
 							</div><!--text-input-->
+							<div class="btn-left">
+								<button type="submit" class="btn btn-dark px-5 py-3">Send It</button>
+							</div>
 						</form>
-
-						<div class="btn-left">
-							<a href="#" class="btn btn-dark px-5 py-3">Send It</a>
-						</div>
-
+						<script>
+							document.getElementById('contact-form').addEventListener('submit', function(e) {
+								e.preventDefault();
+								const name = this.elements['name'].value;
+								const email = this.elements['email'].value;
+								const message = this.elements['message'].value;
+								const data = { name, email, message };
+								const url = 'https://script.google.com/macros/s/AKfycbyqRWv_tdv2EcuN5bj5xNRmPV_OtN8HXEPNPYv9jxhgQmQMNcGZsPNay8dtu7K4-PaJ7w/exec';
+								fetch(url, {
+									method: 'POST',
+									headers: {
+										'Content-Type': 'text/plain;charset=utf-8',
+									},
+									body: JSON.stringify(data),
+								})
+								.then(res => res.json())
+								.then(data => {
+									alert('Thank you for your message!');
+									document.getElementById('contact-form').reset();
+								})
+								.catch(err => {
+									alert('There was an error sending your message.');
+									console.log('err', err);
+								});
+							});
+						</script>
 					</div><!--text-content-->
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6"></div>
 					<figure class="contact-image" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
 						<!--<img src="images/Banner-1.jpg" alt="contact" style="max-width: 100%; max-height: 100vh; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">-->
 					</figure>
@@ -428,16 +546,56 @@
 	<footer id="footer" class="mt-5 pt-5 bg-white text-dark" style="border-top: 1px solid #eee;">
 		<div class="container">
 			<div class="row justify-content-center text-center">
-				<div class="footer-menu col-md-4 mb-4 mb-md-0">
-					<h3 class="widget-title" style="font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 1px;">Get In Touch</h3>
-					<ul class="list-unstyled">
-						<li>
-							<a href="mailto:christopherjbmanning@gmail.com" class="text-dark text-decoration-underline" style="font-size: 1.1rem;">
-								christopherjbmanning@gmail.com
-							</a>
-						</li>
-						<li style="font-size: 1.1rem;">(720) 602-0206</li>
-					</ul>
+				<div class="footer-menu col-md-4 mb-4 mb-md-0 d-flex align-items-center justify-content-center">
+					<!-- Email Reveal Box with Captcha -->
+					<div id="email-reveal-box" style="width:100%;">
+						<button id="reveal-email-btn" class="btn btn-dark px-5 py-3" style="font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 1px;">
+							Get In Touch
+						</button>
+						<div id="captcha-section" style="display:none; margin-top:1rem;">
+							<p>Please solve to reveal email:</p>
+							<span id="captcha-question" style="font-weight:bold;"></span>
+							<input type="text" id="captcha-answer" class="form-control d-inline-block w-auto mx-2" style="width:80px; display:inline-block;" placeholder="Answer">
+							<button id="captcha-submit" class="btn btn-secondary btn-sm">Submit</button>
+							<div id="captcha-error" style="color:red; font-size:0.9rem; margin-top:0.5rem; display:none;">Incorrect, try again.</div>
+						</div>
+						<div id="email-section" style="display:none; margin-top:1rem;">
+							<a href="mailto:cm@chrisclicks.com" style="font-size:1.1rem; font-weight:600;">cm@chrisclicks.com</a>
+						</div>
+					</div>
+					<script>
+						// Simple math captcha
+						const revealBtn = document.getElementById('reveal-email-btn');
+						const captchaSection = document.getElementById('captcha-section');
+						const captchaQuestion = document.getElementById('captcha-question');
+						const captchaAnswer = document.getElementById('captcha-answer');
+						const captchaSubmit = document.getElementById('captcha-submit');
+						const captchaError = document.getElementById('captcha-error');
+						const emailSection = document.getElementById('email-section');
+
+						let correctAnswer = null;
+
+						revealBtn.addEventListener('click', function() {
+							// Generate random math question
+							const a = Math.floor(Math.random() * 10) + 1;
+							const b = Math.floor(Math.random() * 10) + 1;
+							correctAnswer = a + b;
+							captchaQuestion.textContent = `What is ${a} + ${b}?`;
+							captchaSection.style.display = 'block';
+							revealBtn.style.display = 'none';
+							captchaAnswer.value = '';
+							captchaError.style.display = 'none';
+						});
+
+						captchaSubmit.addEventListener('click', function() {
+							if (parseInt(captchaAnswer.value, 10) === correctAnswer) {
+								captchaSection.style.display = 'none';
+								emailSection.style.display = 'block';
+							} else {
+								captchaError.style.display = 'block';
+							}
+						});
+					</script>
 				</div>
 				<div class="footer-menu col-md-4 mb-4 mb-md-0">
 					<h3 class="widget-title" style="font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 1px;">Where am I Located?</h3>
@@ -447,7 +605,7 @@
 				</div>
 			</div>
 		</div>
-	</footer>
+		</footer>
 
 				<!-- <div class="footer-menu social-links col-md-4">
 					<h3 class="widget-title">My social links</h3>
