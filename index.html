@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>ChrisClicks Photography</title>
+	<title>Chris Manning</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -211,124 +211,150 @@
 
 
 
-	<section class="portfolio" id="portfolio">
-		<div class="container-fluid">
-			<div class="row">
 
-				<div class="section-header text-center">
-					<h2 class="section-title">Portfolio</h2>
-					<!-- <p>These are actual works of <a href="https://www.pexels.com/@cottonbro/" target="_blank">cottonbro studio</a></p>
-				</div><!--section-header-->
 
-				<div id="filters" class="button-group d-flex gap-4 justify-content-center py-5">
-					<a href="#" class="text-decoration-none text-uppercase is-checked" data-filter=".travel">Travel</a>
-					<a href="#" class="text-decoration-none text-uppercase" data-filter=".portrait">Portrait</a>
-					<a href="#" class="text-decoration-none text-uppercase" data-filter=".landscape">Landscape</a>
-					<a href="#" class="text-decoration-none text-uppercase" data-filter=".events">Events</a>
+
+
+
+<!-- Portfolio Section below -->
+
+
+
+
+
+
+
+		<section class="portfolio" id="portfolio">
+			<div class="container-fluid">
+				<div class="row">
+
+					<div class="section-header text-center">
+						<h2 class="section-title">Portfolio</h2>
+
+					<div id="filters" class="button-group d-flex gap-4 justify-content-center py-5">
+						<a href="#" class="text-decoration-none text-uppercase is-checked" data-filter=".travel">Travel</a>
+						<a href="#" class="text-decoration-none text-uppercase" data-filter=".landscape">Landscape</a>
+						<a href="#" class="text-decoration-none text-uppercase" data-filter=".portrait">Portrait</a>
+						<!-- <a href="#" class="text-decoration-none text-uppercase" data-filter=".events">Events</a> -->
+					</div>
+
+				</div>
+			  
+				<div class="grid p-0 clearfix row row-cols-2 row-cols-md-3 row-cols-lg-5">
+					<!-- Portfolio Items will be loaded by JS -->
 				</div>
 
-			</div>
-		  
-			<div class="grid p-0 clearfix row row-cols-2 row-cols-md-3 row-cols-lg-5">
-				<!-- Travel Portfolio Items (randomized by JS below) -->
-				<!-- Landscape Portfolio Items (randomized by JS below) -->
-			</div>
-
-			<script>
-				// Travel image data
-				const travelImages = Array.from({length: 51}, (_, i) => ({
-					src: `images/Travel-${String(i+1).padStart(2, '0')}.jpg`,
-					caption: `Sample Caption goes here for Portfolio Item ${i+1}.`
-				}));
-
-				// Landscape image data
-				const landscapeImages = [
-					{src: "images/Landscape-01.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 1."},
-					{src: "images/Landscape-02.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 2."},
-					{src: "images/Landscape-03.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 3."},
-					{src: "images/Landscape-04.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 4."},
-					{src: "images/Landscape-05.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 5."},
-					{src: "images/Landscape-06.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 6."},
-					{src: "images/Landscape-07.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 7."},
-					{src: "images/Landscape-08.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 8."},
-					{src: "images/Landscape-09.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 9."},
-					{src: "images/Landscape-10.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 10."},
-					{src: "images/Landscape-11.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 11."},
-					{src: "images/Landscape-12.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 12."},
-					{src: "images/Landscape-13.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 13."},
-					{src: "images/Landscape-14.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 14."},
-					{src: "images/Landscape-15.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 15."},
-					{src: "images/Landscape-16.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 16."},
-					{src: "images/Landscape-17.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 17."},
-					{src: "images/Landscape-18.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 18."},
-					{src: "images/Landscape-19.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 19."},
-					{src: "images/Landscape-20.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 20."},
-					{src: "images/Landscape-21.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 21."},
-					{src: "images/Landscape-22.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 22."},
-					{src: "images/Landscape-23.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 23."},
-					{src: "images/Landscape-24.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 24."},
-					{src: "images/Landscape-25.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 25."},
-					{src: "images/Landscape-26.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 26."},
-					{src: "images/Landscape-27.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 27."},
-					{src: "images/Landscape-28.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 28."},
-					{src: "images/Landscape-29.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 29."},
-					{src: "images/Landscape-30.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 30."},
-					{src: "images/Landscape-31.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 31."},
-					{src: "images/Landscape-32.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 32."},
-					{src: "images/Landscape-33.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 33."},
-					{src: "images/Landscape-34.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 34."},
-					{src: "images/Landscape-35.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 35."},
-					{src: "images/Landscape-36.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 36."},
-					{src: "images/Landscape-37.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 37."},
-					{src: "images/Landscape-38.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 38."},
-					{src: "images/Landscape-39.jpg", caption: "Sample Caption goes here for Landscape Portfolio Item 39."}
-				];
-
-				// Fisher-Yates shuffle
-				function shuffle(array) {
-					let m = array.length, t, i;
-					while (m) {
-						i = Math.floor(Math.random() * m--);
-						t = array[m];
-						array[m] = array[i];
-						array[i] = t;
+				<script>
+					// Helper: Load all images in a category by checking for file existence
+					function getAllImages(prefix, ext = 'jpg', max = 999) {
+						const images = [];
+						let stopped = false;
+						const pad = n => n < 10 ? '0' + n : n;
+						return new Promise(resolve => {
+							function tryNext(i) {
+								if (i > max || stopped) {
+									resolve(images);
+									return;
+								}
+								const src = `images/${prefix}-${pad(i)}.${ext}`;
+								const img = new window.Image();
+								img.onload = function() {
+									images.push({
+										src,
+										caption: `Sample Caption goes here for ${prefix} Portfolio Item ${i}.`
+									});
+									tryNext(i + 1);
+								};
+								img.onerror = function() {
+									stopped = true;
+									resolve(images);
+								};
+								img.src = src;
+							}
+							tryNext(1);
+						});
 					}
-					return array;
-				}
 
-				document.addEventListener("DOMContentLoaded", function() {
-					const grid = document.querySelector('.grid');
-					if (!grid) return;
+					// Shuffle array in place
+					function shuffle(array) {
+						for (let i = array.length - 1; i > 0; i--) {
+							const j = Math.floor(Math.random() * (i + 1));
+							[array[i], array[j]] = [array[j], array[i]];
+						}
+						return array;
+					}
 
-					// Randomize and add only 20 travel images
-					const shuffledTravel = shuffle([...travelImages]).slice(0, 20);
-					shuffledTravel.forEach((img, idx) => {
-						const col = document.createElement("div");
-						col.className = "col mb-4 portfolio-item travel";
-						col.innerHTML = `
-							<a href="${img.src}" class="image-link" title="${img.caption}">
-								<img src="${img.src}" class="img-fluid" alt="portfolio">
-							</a>
-						`;
-						grid.appendChild(col);
+					document.addEventListener("DOMContentLoaded", function() {
+						const grid = document.querySelector('.grid');
+						if (!grid) return;
+
+						Promise.all([
+							getAllImages('Travel'),
+							getAllImages('Landscape'),
+							getAllImages('Portrait'),
+							getAllImages('Events')
+						]).then(([travelImages, landscapeImages, portraitImages, eventsImages]) => {
+							// Shuffle each category
+							shuffle(travelImages);
+							shuffle(landscapeImages);
+							shuffle(portraitImages);
+							shuffle(eventsImages);
+
+							// Limit to 20 random images per category
+							const travel20 = travelImages.slice(0, 20);
+							const landscape20 = landscapeImages.slice(0, 20);
+							const portrait20 = portraitImages.slice(0, 20);
+							const events20 = eventsImages.slice(0, 20);
+
+							// Add all travel images
+							travel20.forEach((img) => {
+								const col = document.createElement("div");
+								col.className = "col mb-4 portfolio-item travel";
+								col.innerHTML = `
+									<a href="${img.src}" class="image-link" title="${img.caption}">
+										<img src="${img.src}" class="img-fluid" alt="portfolio">
+									</a>
+								`;
+								grid.appendChild(col);
+							});
+							// Add all landscape images
+							landscape20.forEach((img) => {
+								const col = document.createElement("div");
+								col.className = "col mb-4 portfolio-item landscape";
+								col.innerHTML = `
+									<a href="${img.src}" class="image-link" title="${img.caption}">
+										<img src="${img.src}" class="img-fluid" alt="portfolio">
+									</a>
+								`;
+								grid.appendChild(col);
+							});
+							// Add all portrait images
+							portrait20.forEach((img) => {
+								const col = document.createElement("div");
+								col.className = "col mb-4 portfolio-item portrait";
+								col.innerHTML = `
+									<a href="${img.src}" class="image-link" title="${img.caption}">
+										<img src="${img.src}" class="img-fluid" alt="portfolio">
+									</a>
+								`;
+								grid.appendChild(col);
+							});
+							// Add all events images
+							events20.forEach((img) => {
+								const col = document.createElement("div");
+								col.className = "col mb-4 portfolio-item events";
+								col.innerHTML = `
+									<a href="${img.src}" class="image-link" title="${img.caption}">
+										<img src="${img.src}" class="img-fluid" alt="portfolio">
+									</a>
+								`;
+								grid.appendChild(col);
+							});
+						});
 					});
-
-					// Randomize and add only 20 landscape images
-					const shuffledLandscape = shuffle([...landscapeImages]).slice(0, 20);
-					shuffledLandscape.forEach((img, idx) => {
-						const col = document.createElement("div");
-						col.className = "col mb-4 portfolio-item landscape";
-						col.innerHTML = `
-							<a href="${img.src}" class="image-link" title="${img.caption}">
-								<img src="${img.src}" class="img-fluid" alt="portfolio">
-							</a>
-						`;
-						grid.appendChild(col);
-					});
-				});
-			</script>
-		</div>
-	</section>
+				</script>
+			</div>
+		</section>
 
 
 
@@ -487,7 +513,7 @@
 							<h2 class="section-title">Contact Me</h2>
 						</div><!--section-header-->
 
-						<p>Lets work on a project together.</p>
+						<p>I would love to get suggestions from you.</p>
 
 						<form id="contact-form" class="form-group">
 							<div class="text-input row">
