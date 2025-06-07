@@ -244,15 +244,6 @@
 					<!-- Portfolio Items will be loaded by JS -->
 				</div>
 
-				<!-- Lightbox Modal -->
-				<div id="portfolio-lightbox" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.92); z-index:20000; align-items:center; justify-content:center; flex-direction:column;">
-					<button id="lightbox-close" style="position:absolute; top:24px; right:36px; background:none; border:none; color:#fff; font-size:2.5rem; z-index:2; cursor:pointer;">&times;</button>
-					<button id="lightbox-prev" style="position:absolute; left:24px; top:50%; transform:translateY(-50%); background:none; border:none; color:#fff; font-size:2.5rem; z-index:2; cursor:pointer;">&#8592;</button>
-					<button id="lightbox-next" style="position:absolute; right:24px; top:50%; transform:translateY(-50%); background:none; border:none; color:#fff; font-size:2.5rem; z-index:2; cursor:pointer;">&#8594;</button>
-					<img id="lightbox-img" src="" alt="" style="max-width:90vw; max-height:80vh; border-radius:8px; box-shadow:0 8px 32px rgba(0,0,0,0.7); margin-bottom:1rem;">
-					<div id="lightbox-caption" style="color:#fff; font-size:1.1rem; text-align:center; max-width:90vw;"></div>
-				</div>
-
 				<script>
 					// Helper: Load all images in a category by checking for file existence
 					function getAllImages(prefix, ext = 'jpg', max = 999) {
@@ -315,7 +306,6 @@
 							const portrait20 = portraitImages.slice(0, 20);
 							const events20 = eventsImages.slice(0, 20);
 
-							const allImages = [];
 							// Add all travel images
 							travel20.forEach((img) => {
 								const col = document.createElement("div");
@@ -326,7 +316,6 @@
 									</a>
 								`;
 								grid.appendChild(col);
-								allImages.push({src: img.src, caption: img.caption});
 							});
 							// Add all landscape images
 							landscape20.forEach((img) => {
@@ -338,7 +327,6 @@
 									</a>
 								`;
 								grid.appendChild(col);
-								allImages.push({src: img.src, caption: img.caption});
 							});
 							// Add all portrait images
 							portrait20.forEach((img) => {
@@ -350,7 +338,6 @@
 									</a>
 								`;
 								grid.appendChild(col);
-								allImages.push({src: img.src, caption: img.caption});
 							});
 							// Add all events images
 							events20.forEach((img) => {
@@ -362,61 +349,6 @@
 									</a>
 								`;
 								grid.appendChild(col);
-								allImages.push({src: img.src, caption: img.caption});
-							});
-
-							// Lightbox logic
-							const lightbox = document.getElementById('portfolio-lightbox');
-							const lightboxImg = document.getElementById('lightbox-img');
-							const lightboxCaption = document.getElementById('lightbox-caption');
-							const lightboxClose = document.getElementById('lightbox-close');
-							const lightboxPrev = document.getElementById('lightbox-prev');
-							const lightboxNext = document.getElementById('lightbox-next');
-							let currentIndex = 0;
-
-							function showLightbox(index) {
-								if (index < 0) index = allImages.length - 1;
-								if (index >= allImages.length) index = 0;
-								currentIndex = index;
-								lightboxImg.src = allImages[currentIndex].src;
-								lightboxCaption.textContent = allImages[currentIndex].caption;
-								lightbox.style.display = 'flex';
-								document.body.style.overflow = 'hidden';
-							}
-
-							function hideLightbox() {
-								lightbox.style.display = 'none';
-								document.body.style.overflow = '';
-							}
-
-							grid.addEventListener('click', function(e) {
-								const link = e.target.closest('.image-link');
-								if (link) {
-									e.preventDefault();
-									const src = link.getAttribute('href');
-									const idx = allImages.findIndex(img => img.src === src);
-									if (idx !== -1) {
-										showLightbox(idx);
-									}
-								}
-							});
-
-							lightboxClose.addEventListener('click', hideLightbox);
-							lightboxPrev.addEventListener('click', function() {
-								showLightbox(currentIndex - 1);
-							});
-							lightboxNext.addEventListener('click', function() {
-								showLightbox(currentIndex + 1);
-							});
-							lightbox.addEventListener('click', function(e) {
-								if (e.target === lightbox) hideLightbox();
-							});
-							document.addEventListener('keydown', function(e) {
-								if (lightbox.style.display === 'flex') {
-									if (e.key === 'ArrowLeft') showLightbox(currentIndex - 1);
-									if (e.key === 'ArrowRight') showLightbox(currentIndex + 1);
-									if (e.key === 'Escape') hideLightbox();
-								}
 							});
 						});
 					});
@@ -636,29 +568,29 @@
 			</div>
 		</div>
 	</section>
-
 	<footer id="footer" class="mt-5 pt-5 bg-white text-dark" style="border-top: 1px solid #eee;">
 		<div class="container">
 			<div class="row justify-content-center text-center">
-				<div class="footer-menu col-md-4 mb-4 mb-md-0 d-flex align-items-center justify-content-center">
-					<!-- Email Reveal Box with Captcha -->
-					<div id="email-reveal-box" style="width:100%;">
-						<button id="reveal-email-btn" class="btn btn-dark px-5 py-3" style="font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 1px;">
+				<!-- Email Reveal Box with Captcha -->
+				<div class="footer-menu col-md-4 mb-4 mb-md-0 d-flex flex-column align-items-center justify-content-center">
+					<div id="email-reveal-box" class="w-100">
+						<button id="reveal-email-btn" class="btn btn-dark px-5 py-3 fw-bold" style="font-family: 'Playfair Display', serif; letter-spacing: 1px;">
 							Get In Touch
 						</button>
-						<div id="captcha-section" style="display:none; margin-top:1rem;">
-							<p>Please solve to reveal email:</p>
-							<span id="captcha-question" style="font-weight:bold;"></span>
-							<input type="text" id="captcha-answer" class="form-control d-inline-block w-auto mx-2" style="width:80px; display:inline-block;" placeholder="Answer">
-							<button id="captcha-submit" class="btn btn-secondary btn-sm">Submit</button>
-							<div id="captcha-error" style="color:red; font-size:0.9rem; margin-top:0.5rem; display:none;">Incorrect, try again.</div>
+						<div id="captcha-section" class="mt-3" style="display:none;">
+							<p class="mb-2">Please solve to reveal email:</p>
+							<div class="d-flex align-items-center justify-content-center gap-2">
+								<span id="captcha-question" class="fw-bold"></span>
+								<input type="text" id="captcha-answer" class="form-control d-inline-block text-center" style="width:80px;" placeholder="Answer">
+								<button id="captcha-submit" class="btn btn-secondary btn-sm">Submit</button>
+							</div>
+							<div id="captcha-error" class="text-danger small mt-2" style="display:none;">Incorrect, try again.</div>
 						</div>
-						<div id="email-section" style="display:none; margin-top:1rem;">
-							<a href="mailto:cm@chrisclicks.com" style="font-size:1.1rem; font-weight:600;">cm@chrisclicks.com</a>
+						<div id="email-section" class="mt-3" style="display:none;">
+							<a href="mailto:cm@chrisclicks.com" class="fw-semibold" style="font-size:1.1rem;">cm@chrisclicks.com</a>
 						</div>
 					</div>
 					<script>
-						// Simple math captcha
 						const revealBtn = document.getElementById('reveal-email-btn');
 						const captchaSection = document.getElementById('captcha-section');
 						const captchaQuestion = document.getElementById('captcha-question');
@@ -666,11 +598,9 @@
 						const captchaSubmit = document.getElementById('captcha-submit');
 						const captchaError = document.getElementById('captcha-error');
 						const emailSection = document.getElementById('email-section');
-
 						let correctAnswer = null;
 
 						revealBtn.addEventListener('click', function() {
-							// Generate random math question
 							const a = Math.floor(Math.random() * 10) + 1;
 							const b = Math.floor(Math.random() * 10) + 1;
 							correctAnswer = a + b;
@@ -679,6 +609,7 @@
 							revealBtn.style.display = 'none';
 							captchaAnswer.value = '';
 							captchaError.style.display = 'none';
+							captchaAnswer.focus();
 						});
 
 						captchaSubmit.addEventListener('click', function() {
@@ -687,19 +618,53 @@
 								emailSection.style.display = 'block';
 							} else {
 								captchaError.style.display = 'block';
+								captchaAnswer.value = '';
+								captchaAnswer.focus();
+							}
+						});
+
+						captchaAnswer.addEventListener('keyup', function(e) {
+							if (e.key === 'Enter') {
+								captchaSubmit.click();
 							}
 						});
 					</script>
 				</div>
-				<div class="footer-menu col-md-4 mb-4 mb-md-0">
-					<h3 class="widget-title" style="font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 1px;">Where am I Located?</h3>
-					<ul class="list-unstyled" id="footer-menu">
+				<!-- Location Info -->
+				<div class="footer-menu col-md-4 mb-4 mb-md-0 d-flex flex-column align-items-center justify-content-center">
+					<h3 class="widget-title mb-2 fw-bold" style="font-family: 'Playfair Display', serif; letter-spacing: 1px;">Where am I Located?</h3>
+					<ul class="list-unstyled mb-0" id="footer-menu">
 						<li style="font-size: 1.1rem;">Boston, MA, USA</li>
 					</ul>
 				</div>
 			</div>
+			<!-- Minimalist Map below -->
+			<div class="row justify-content-center mt-4">
+				<div class="col-12 d-flex justify-content-center">
+					<div style="width:100%;max-width:320px;">
+						<div style="border-radius:8px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.04); border:1px solid #eee;">
+							<!-- Minimalist map using OpenStreetMap "Carto" layer with zoomed out view to hide most details -->
+							<iframe
+								title="Boston Minimal Map"
+								width="100%"
+								height="120"
+								frameborder="0"
+								style="border:0;"
+								allowfullscreen=""
+								loading="lazy"
+								referrerpolicy="no-referrer-when-downgrade"
+								src="https://www.openstreetmap.org/export/embed.html?bbox=-71.1206%2C42.3201%2C-71.0006%2C42.4001&amp;layer=mapnik&amp;marker=42.3601,-71.0589&amp;zoom=11"></iframe>
+						</div>
+						<div class="text-center mt-2">
+							<small>
+								<a href="https://www.openstreetmap.org/?mlat=42.3601&amp;mlon=-71.0589#map=11/42.3601/-71.0589" target="_blank" rel="noopener" style="color:#888;text-decoration:underline;">Map</a>
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		</footer>
+	</footer>
 
 				<!-- <div class="footer-menu social-links col-md-4">
 					<h3 class="widget-title">My social links</h3>
@@ -714,11 +679,9 @@
 		</div>
 	</footer>
 
-	<div class="footer-bottom py-5 mt-5 border-top">
-		<div class="container">
-			<div class="copyright">
-				<p style="color: #fff; font-size: 10px;">© 2023 Alena Miller. HTML Template by <a href="http://www.templatesjungle.com/" style="color: #fff; font-size: 10px;">TemplatesJungle</a></p>
-			</div>
+	<div class="footer-bottom py-4 mt-5 border-top">
+		<div class="container text-center">
+			<small style="color: #888;">&copy; 2024 Chris Manning. All rights reserved.</small>
 		</div>
 	</div>
 
