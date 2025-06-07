@@ -219,8 +219,6 @@
 <!-- Portfolio Section below -->
 
 
-
-
 <section class="portfolio" id="portfolio">
 	<div class="container-fluid">
 		<div class="row">
@@ -263,10 +261,18 @@
 			}
 		</style>
 		<script>
-			// Statically generate image elements for each category (1-16), let browser handle missing images
-			function createPortfolioItems(prefix, category) {
+			// Show a random 16 images from each category on each page load
+			function createPortfolioItems(prefix, category, totalImages) {
 				const grid = document.querySelector('.grid');
-				for (let i = 1; i <= 16; i++) {
+				const indices = Array.from({length: totalImages}, (_, i) => i + 1);
+				// Shuffle indices
+				for (let i = indices.length - 1; i > 0; i--) {
+					const j = Math.floor(Math.random() * (i + 1));
+					[indices[i], indices[j]] = [indices[j], indices[i]];
+				}
+				const selected = indices.slice(0, 16);
+				for (let idx = 0; idx < selected.length; idx++) {
+					const i = selected[idx];
 					const pad = n => n < 10 ? '0' + n : n;
 					const src = `images/${prefix}-${pad(i)}.jpg`;
 					const col = document.createElement("div");
@@ -283,37 +289,15 @@
 			document.addEventListener("DOMContentLoaded", function() {
 				const grid = document.querySelector('.grid');
 				if (!grid) return;
-				createPortfolioItems('Travel', 'travel');
-				createPortfolioItems('Landscape', 'landscape');
-				createPortfolioItems('Portrait', 'portrait');
-				// createPortfolioItems('Events', 'events'); // Uncomment if you want events
+				// Set the actual total number of images for each section below
+				createPortfolioItems('Travel', 'travel', 40);     // e.g. 40 travel images
+				createPortfolioItems('Landscape', 'landscape', 32); // e.g. 32 landscape images
+				createPortfolioItems('Portrait', 'portrait', 28);   // e.g. 28 portrait images
+				// createPortfolioItems('Events', 'events', 12); // Uncomment and set number if you want events
 			});
 		</script>
 	</div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
 	<!--<section id="blog" class="latest-blogs my-2 py-2 my-md-5 py-md-5">
 		<div class="container">
 
