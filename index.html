@@ -112,7 +112,7 @@
 				<nav class="navbar navbar-expand-lg py-0">
 					<div class="navbar-brand">
 						<a href="index.html">
-							<img src="images/Logo.png" alt="logo" style="height: 64px; width: auto; display: block;">
+							<img src="images/Logo.png" alt="logo" style="height: 64px; width: auto; display: block; margin-left: 12px;">
 						</a>
 					</div>
 
@@ -151,10 +151,25 @@
 		<img src="images/Banner-3.jpg" alt="photographer" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 1;">
 		<div class="container-fluid h-100 d-flex align-items-center justify-content-center" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 3;">
 			<div class="text-center">
-				<h1 class="display-1" style="color: #fff; opacity: 0.75; text-shadow: 0 2px 16px rgba(0,0,0,0.7); font-family: 'Playfair Display', serif;">
-					Photography for<br>
-					people, places &amp; projects
+				<h1 id="billboard-title" class="display-1" style="color: #fff; opacity: 0; text-shadow: 0 2px 16px rgba(0,0,0,0.7); font-family: 'Playfair Display', serif; transition: opacity 1.2s cubic-bezier(.4,0,.2,1); position: relative; top: -80px;">
+					<span id="billboard-main">Photography</span><br>
+					<span id="billboard-sub" style="opacity:0; transition: opacity 2.5s cubic-bezier(.4,0,.2,1);">for people, places &amp; projects</span>
 				</h1>
+				<script>
+					document.addEventListener("DOMContentLoaded", function() {
+						setTimeout(function() {
+							const title = document.getElementById('billboard-title');
+							if (title) {
+								title.style.transition = "opacity 2s cubic-bezier(.4,0,.2,1)";
+								title.style.opacity = 1;
+							}
+							setTimeout(function() {
+								const sub = document.getElementById('billboard-sub');
+								if (sub) sub.style.opacity = 1;
+							}, 1200); // fade in sub after main is visible
+						}, 1000); // initial delay before fade in
+					});
+				</script>
 			</div>
 		</div>
 		</div>
@@ -298,77 +313,13 @@
 		</script>
 	</div>
 <div class="w-100 d-flex justify-content-center my-4">
-	<a href="Index2.html" class="text-decoration-none text-uppercase btn px-4 py-2" style="font-family: 'Playfair Display', serif; color: #111; border: 2px solid #111; background: transparent;">Gallery</a>
+	<a href="Index2.html" class="text-decoration-none text-uppercase btn px-4 py-2" style="font-family: 'Playfair Display', serif; color: #111; border: 2px solid #111; background: transparent; min-width: 320px; width: 40vw; max-width: 480px;">
+		Gallery
+	</a>
 </div>
 
 </section>
-	<!--<section id="blog" class="latest-blogs my-2 py-2 my-md-5 py-md-5">
-		<div class="container">
 
-			<div class="section-header my-5">
-				<h2 class="section-title">Blog</h2>
-			</div><!--section-header-->
-
-			<!--<div class="row mb-5 pb-5">
-				<div class="col-md-6">
-					<div class="post-content mb-5">
-						<div class="meta-tags text-uppercase text-gray d-flex gap-3 fs-6 mb-3 align-items-center">
-							<span class="meta-date">Jan.30.2020</span>
-							<span>ᐧ</span>
-							<span class="meta-category"><a href="#">Trends</a></span>
-						</div>
-						<h3 class="post-title mb-3"><a href="single-blog.html">Why The Trend Of Minimalism?</a></h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-							has been the industry's standard dummy text ever.</p>
-					</div>
-				</div><!--post-item-->
-
-				<!--<div class="col-md-6">
-					<div class="post-content mb-5">
-						<div class="meta-tags text-uppercase text-gray d-flex gap-3 fs-6 mb-3 align-items-center">
-							<span class="meta-date">Jan.30.2020</span>
-							<span>ᐧ</span>
-							<span class="meta-category"><a href="#">Trends</a></span>
-						</div>
-						<h3 class="post-title mb-3"><a href="single-blog.html">Simple Tips & Tricks Of Photography</a>
-						</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-							has been the industry's standard dummy text ever.</p>
-					</div>
-				</div><!--post-item-->
-
-				<!--<div class="col-md-6">
-					<div class="post-content mb-5">
-						<div class="meta-tags text-uppercase text-gray d-flex gap-3 fs-6 mb-3 align-items-center">
-							<span class="meta-date">Jan.30.2020</span>
-							<span>ᐧ</span>
-							<span class="meta-category"><a href="#">Collections</a></span>
-						</div>
-						<h3 class="post-title mb-3"><a href="single-blog.html">World's Top Photograph Collections</a>
-						</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-							has been the industry's standard dummy text ever.</p>
-					</div>
-				</div><!--post-item-->
-
-				<!--<div class="col-md-6">
-					<div class="post-content mb-5">
-						<div class="meta-tags text-uppercase text-gray d-flex gap-3 fs-6 mb-3 align-items-center">
-							<span class="meta-date">Jan.30.2020</span>
-							<span>ᐧ</span>
-							<span class="meta-category"><a href="#">Portraits</a></span>
-						</div>
-						<h3 class="post-title mb-3"><a href="single-blog.html">How To Get Model Look Portraits</a></h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-							has been the industry's standard dummy text ever.</p>
-					</div>
-				</div><!--post-item-->
-
-			</div><!--post-content-->
-
-			<!--<div class="btn-left">
-				<a href="#" class="btn btn-dark px-5 py-3">View All Blog</a>
-			</div>-->
 
 		</div>
 	</section>
@@ -437,7 +388,7 @@
 							<h2 class="section-title">Contact Me</h2>
 						</div><!--section-header-->
 
-						<p>I would love to get suggestions from you.</p>
+						<p>Let's work together.</p>
 
 						<form id="contact-form" class="form-group">
 							<div class="text-input row">
@@ -520,7 +471,7 @@
 				<div class="footer-menu col-md-4 mb-4 mb-md-0 d-flex flex-column align-items-center justify-content-center">
 					<div id="email-reveal-box" class="w-100">
 						<button id="reveal-email-btn" class="btn btn-dark px-5 py-3 fw-bold" style="font-family: 'Playfair Display', serif; letter-spacing: 1px;">
-							Get In Touch
+							Email
 						</button>
 						<div id="captcha-section" class="mt-3" style="display:none;">
 							<p class="mb-2">Please solve to reveal email:</p>
@@ -589,21 +540,7 @@
 					<div style="width:100%;max-width:320px;">
 						<div style="border-radius:8px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.04); border:1px solid #eee;">
 							<!-- Minimalist map using OpenStreetMap "Carto" layer with zoomed out view to hide most details -->
-							<iframe
-								title="Boston Minimal Map"
-								width="100%"
-								height="120"
-								frameborder="0"
-								style="border:0;"
-								allowfullscreen=""
-								loading="lazy"
-								referrerpolicy="no-referrer-when-downgrade"
-								src="https://www.openstreetmap.org/export/embed.html?bbox=-71.1206%2C42.3201%2C-71.0006%2C42.4001&amp;layer=mapnik&amp;marker=42.3601,-71.0589&amp;zoom=11"></iframe>
-						</div>
-						<div class="text-center mt-2">
-							<small>
-								<a href="https://www.openstreetmap.org/?mlat=42.3601&amp;mlon=-71.0589#map=11/42.3601/-71.0589" target="_blank" rel="noopener" style="color:#888;text-decoration:underline;">Map</a>
-							</small>
+							<!-- Map removed as requested -->
 						</div>
 					</div>
 				</div>
@@ -620,7 +557,7 @@
 					</ul>
 				</div>
 
-			</div><!--footer-content-->
+			</div> <!-- footer-content-->
 		</div>
 	</footer>
 
